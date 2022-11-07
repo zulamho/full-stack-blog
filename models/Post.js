@@ -13,13 +13,23 @@ const PostSchema = new mongoose.Schema(
     },
     tags: {
       type: Array,
-      default : []   //если тэгов нету , то пустой массив
+      default: [], //если тэгов нету , то пустой массив
     },
-    avtarUrl: String,
+    viewsCount: {
+      type: Number,
+      default: 0, /// если не буд кол просм по умолч 0
+    },
+
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", // ссылаешься на пользов по id
+      unique: true,
+    },
+    imageUrl: String,
   },
   {
     timestamps: true,
   }
 );
 
-export default mongoose.model("User", PostSchema);
+export default mongoose.model("Post", PostSchema);
